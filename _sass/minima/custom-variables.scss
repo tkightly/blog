@@ -1,9 +1,26 @@
-$dm-background: #303446;
-$dm-foreground: #c6d0f5;
-$dm-border: #414559;
-$dm-link: #8caaee;
-$dm-hover: #babbf1;
-$dm-accent: #ca9ee6;
-$dm-secondary-text: #a5adce;
-$dm-code-bg: #292c3c;
-$dm-code-text: #e5c890;
+// Dark mode (Catppuccin Frappe)
+// -----------------------------
+
+$dm-brand-color: #89b4fa !default; // Blue
+$dm-brand-color-light: lighten($dm-brand-color, 5%) !default;
+$dm-brand-color-dark: darken($dm-brand-color, 35%) !default;
+
+$dm-site-title-color: $dm-brand-color-light !default;
+
+$dm-text-color: #cdd6f4 !default; // Text
+$dm-background-color: #303446 !default; // Base
+$dm-code-background-color: #292c3c !default; // Surface0
+
+$dm-link-base-color: #89b4fa !default; // Blue
+$dm-link-visited-color: $dm-link-base-color !default;
+$dm-link-hover-color: lighten($dm-link-base-color, 15%) !default;
+
+$dm-border-color-01: #45475a !default; // Surface1
+$dm-border-color-02: #585b70 !default; // Surface2
+$dm-border-color-03: #6c7086 !default; // Overlay0
+
+$dm-table-text-color: $dm-text-color !default;
+$dm-table-zebra-color: lighten($dm-background-color, 4%) !default;
+$dm-table-header-bg-color: lighten($dm-background-color, 10%) !default;
+$dm-table-header-border: lighten($dm-background-color, 21%) !default;
+$dm-table-border-color: $dm-border-color-01 !default;
