@@ -1,4 +1,3 @@
-#remote_theme: "jekyll/minima@43f3ed0"
-theme: minima
+remote_theme: "tkightly/minima@HEAD"
 minima:
   skin: auto
