@@ -43,16 +43,13 @@
         <nav class="site-nav">
           {{- with site.GetPage "/posts" }}<a href="{{ .RelPermalink }}">Posts</a>{{ end }}
         </nav>
-        <label class="theme-picker" hidden>
-          <span>theme</span>
-          <select id="theme-select" aria-label="Catppuccin theme">
-            <option value="auto">Auto</option>
-            <option value="latte">Latte</option>
-            <option value="frappe">Frappé</option>
-            <option value="macchiato">Macchiato</option>
-            <option value="mocha">Mocha</option>
-          </select>
-        </label>
+        <div class="theme-picker" role="group" aria-label="Colour theme" hidden>
+          <button type="button" class="swatch" data-theme-value="auto" title="Auto" aria-label="Auto"></button>
+          <button type="button" class="swatch" data-theme-value="latte" title="Latte" aria-label="Latte"></button>
+          <button type="button" class="swatch" data-theme-value="frappe" title="Frappé" aria-label="Frappé"></button>
+          <button type="button" class="swatch" data-theme-value="macchiato" title="Macchiato" aria-label="Macchiato"></button>
+          <button type="button" class="swatch" data-theme-value="mocha" title="Mocha" aria-label="Mocha"></button>
+        </div>
       </div>
     </div>
   </header>
@@ -66,17 +63,23 @@
       <span>© {{ now.Year }} Tim Kightly</span>
       <span>
         {{- with site.Home.OutputFormats.Get "rss" }}<a href="{{ .RelPermalink }}">RSS</a> · {{ end -}}
-        Built with Hugo · Catppuccin Frappé
+        Built with Hugo
       </span>
     </div>
   </footer>
   <script>
     (function () {
-      var sel = document.getElementById("theme-select");
-      if (!sel || !window.__setTheme) return;
-      sel.value = window.__theme;
-      sel.addEventListener("change", function () { window.__setTheme(sel.value); });
-      sel.closest("label").hidden = false;
+      var group = document.querySelector(".theme-picker");
+      if (!group || !window.__setTheme) return;
+      var buttons = group.querySelectorAll("button");
+      function mark(v) {
+        buttons.forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.themeValue === v); });
+      }
+      mark(window.__theme);
+      buttons.forEach(function (b) {
+        b.addEventListener("click", function () { window.__setTheme(b.dataset.themeValue); mark(b.dataset.themeValue); });
+      });
+      group.hidden = false;
     })();
   </script>
 </body>

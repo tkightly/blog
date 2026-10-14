@@ -267,13 +267,22 @@ tr:nth-child(even) td { background: color-mix(in srgb, var(--mantle) 50%, transp
 
 /* Theme picker */
 .header-controls { display: flex; align-items: center; gap: 20px; }
-.theme-picker { display: flex; align-items: center; gap: 8px; font: 400 .75rem var(--mono-font); color: var(--subtext0); }
-.theme-picker select {
-  font: inherit; color: var(--text); background: var(--base);
-  border: 1px solid var(--surface1); border-radius: 8px; padding: 4px 8px; cursor: pointer;
+.theme-picker { display: flex; align-items: center; gap: 8px; }
+/* Each swatch shows its flavour's base and mauve (Auto: Latte base / Frappé base). */
+.swatch {
+  --a: #eff1f5; --b: #303446;
+  width: 18px; height: 18px; padding: 0; border-radius: 50%; cursor: pointer;
+  border: 1px solid var(--surface1);
+  background: linear-gradient(135deg, var(--a) 50%, var(--b) 50%);
+  transition: transform .15s;
 }
-.theme-picker select:hover { border-color: var(--mauve); }
-.theme-picker select:focus-visible, a:focus-visible { outline: 2px solid var(--mauve); outline-offset: 2px; }
+.swatch:hover { transform: scale(1.15); }
+.swatch[aria-pressed="true"] { outline: 2px solid var(--mauve); outline-offset: 2px; }
+.swatch[data-theme-value="latte"]     { --a: #eff1f5; --b: #8839ef; }
+.swatch[data-theme-value="frappe"]    { --a: #303446; --b: #ca9ee6; }
+.swatch[data-theme-value="macchiato"] { --a: #24273a; --b: #c6a0f6; }
+.swatch[data-theme-value="mocha"]     { --a: #1e1e2e; --b: #cba6f7; }
+.swatch:focus-visible, a:focus-visible { outline: 2px solid var(--mauve); outline-offset: 2px; }
 
 /* Footer */
 .site-footer { background: var(--crust); color: var(--subtext0); font: 400 .75rem var(--mono-font); padding: 22px 0; }
