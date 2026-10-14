@@ -1,0 +1,22 @@
+baseURL = "https://tim.kightly.uk/blog/"
+locale = "en-GB"
+title = "Tim Kightly - Blog"
+disableKinds = ["taxonomy", "term"]
+
+[params]
+  showExcerpts = true
+
+# Keep Jekyll's default post URLs, e.g. /2025/03/05/example-title.html
+[permalinks.page]
+  posts = "/:year/:month/:day/:slug"
+
+[uglyURLs]
+  posts = true
+
+# Keep Jekyll's feed location (jekyll-feed served /feed.xml)
+[outputFormats.rss]
+  baseName = "feed"
+
+[outputs]
+  home = ["html", "rss"]
+  section = ["html"]

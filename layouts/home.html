@@ -1,0 +1,7 @@
+{{ define "main" }}
+<div class="home">
+  {{- with .Title }}<h1 class="page-heading">{{ . }}</h1>{{ end }}
+  {{ .Content }}
+  {{ partial "post-list.html" (where site.RegularPages "Section" "posts") }}
+</div>
+{{ end }}

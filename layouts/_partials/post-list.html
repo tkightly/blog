@@ -1,0 +1,15 @@
+{{- with . }}
+<h2 class="post-list-heading">Posts</h2>
+<ul class="post-list">
+  {{- range . }}
+  <li>
+    <span class="post-meta">{{ .Date | time.Format ":date_medium" }}</span>
+    <h3><a class="post-link" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+    {{- if site.Params.showExcerpts }}
+    {{- /* Match Jekyll's default excerpt: the first paragraph */}}
+    {{ index (findRE `(?s)<p>.*?</p>` .Content 1) 0 | safeHTML }}
+    {{- end }}
+  </li>
+  {{- end }}
+</ul>
+{{- end }}

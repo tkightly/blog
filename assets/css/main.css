@@ -1,0 +1,305 @@
+/*
+ * Port of the Minima "auto" skin used by the old Jekyll site:
+ * Minima's classic light palette, with Catppuccin Frappe in dark mode.
+ */
+:root {
+  color-scheme: light dark;
+
+  --brand-color: #2a7ae2;
+  --site-title-color: #424242;
+  --text-color: #111111;
+  --background-color: #fdfdfd;
+  --code-background-color: #eeeeff;
+  --link-color: #2a7ae2;
+  --link-visited-color: #1756a9;
+  --link-hover-color: #111111;
+  --border-color-01: #e8e8e8;
+  --border-color-02: #a8a8a8;
+  --meta-color: #828282;
+  --table-zebra-color: #f7f7f7;
+  --table-header-bg-color: #efefef;
+  --table-header-border: #dddddd;
+
+  --base-font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Segoe UI Emoji", "Segoe UI Symbol", "Apple Color Emoji", Roboto, Helvetica, Arial, sans-serif;
+  --code-font-family: "Menlo", "Inconsolata", "Consolas", "Roboto Mono", "Ubuntu Mono", "Liberation Mono", "Courier New", monospace;
+  --spacing-unit: 30px;
+  --content-width: 800px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --brand-color: #89b4fa;
+    --site-title-color: #a1c4fb;
+    --text-color: #cdd6f4;
+    --background-color: #303446;
+    --code-background-color: #292c3c;
+    --link-color: #89b4fa;
+    --link-visited-color: #89b4fa;
+    --link-hover-color: #d2e3fd;
+    --border-color-01: #45475a;
+    --border-color-02: #585b70;
+    --meta-color: #6c7086;
+    --table-zebra-color: #383d52;
+    --table-header-bg-color: #454a64;
+    --table-header-border: #5c6386;
+  }
+}
+
+/* Reset */
+body, h1, h2, h3, h4, h5, h6,
+p, blockquote, pre, hr,
+dl, dd, ol, ul, figure {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font: 400 1rem/1.5 var(--base-font-family);
+  color: var(--text-color);
+  background-color: var(--background-color);
+  -webkit-text-size-adjust: 100%;
+  font-feature-settings: "kern" 1;
+  font-kerning: normal;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  overflow-wrap: break-word;
+}
+
+/* Vertical rhythm */
+h1, h2, h3, h4, h5, h6,
+p, blockquote, pre,
+ul, ol, dl, figure {
+  margin-bottom: calc(var(--spacing-unit) * .5);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 400;
+}
+
+hr {
+  margin-top: var(--spacing-unit);
+  margin-bottom: var(--spacing-unit);
+}
+
+main {
+  display: block;
+}
+
+img {
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+ul, ol {
+  margin-left: var(--spacing-unit);
+}
+
+li > ul,
+li > ol {
+  margin-bottom: 0;
+}
+
+/* Links */
+a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+a:visited {
+  color: var(--link-visited-color);
+}
+
+a:hover {
+  color: var(--link-hover-color);
+  text-decoration: underline var(--brand-color);
+  text-underline-offset: 3px;
+}
+
+/* Blockquotes */
+blockquote {
+  color: var(--brand-color);
+  border-left: 4px solid var(--border-color-01);
+  padding-left: calc(var(--spacing-unit) * .5);
+  font-size: 1.125rem;
+  font-style: italic;
+}
+
+blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+/* Code */
+pre,
+code {
+  font-family: var(--code-font-family);
+  font-size: 0.9375em;
+  border: 1px solid var(--border-color-01);
+  border-radius: 3px;
+  background-color: var(--code-background-color);
+}
+
+code {
+  padding: 1px 5px;
+}
+
+pre {
+  padding: 8px 12px;
+  overflow-x: auto;
+}
+
+pre > code {
+  border: 0;
+  padding: 0;
+  background: none;
+}
+
+/* Tables */
+table {
+  margin-bottom: var(--spacing-unit);
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+  border: 1px solid var(--border-color-01);
+}
+
+tr:nth-child(even) {
+  background-color: var(--table-zebra-color);
+}
+
+th, td {
+  padding: calc(var(--spacing-unit) / 3) calc(var(--spacing-unit) / 2);
+  border: 1px solid var(--border-color-01);
+}
+
+th {
+  background-color: var(--table-header-bg-color);
+  border-color: var(--table-header-border);
+}
+
+/* Layout */
+.wrapper {
+  max-width: calc(var(--content-width) - var(--spacing-unit));
+  margin: 0 auto;
+  padding: 0 calc(var(--spacing-unit) * .5);
+}
+
+@media (min-width: 800px) {
+  .wrapper {
+    max-width: calc(var(--content-width) - var(--spacing-unit) * 2);
+    padding: 0 var(--spacing-unit);
+  }
+}
+
+.site-header {
+  border-top: 5px solid var(--border-color-02);
+  border-bottom: 1px solid var(--border-color-01);
+  min-height: 55.95px;
+  line-height: 54px;
+}
+
+.site-title,
+.site-title:visited {
+  font-size: 1.625rem;
+  font-weight: 300;
+  letter-spacing: -1px;
+  color: var(--site-title-color);
+}
+
+.site-title:hover {
+  color: var(--site-title-color);
+}
+
+.page-content {
+  padding: var(--spacing-unit) 0;
+  flex: 1 0 auto;
+}
+
+.site-footer {
+  border-top: 1px solid var(--border-color-01);
+  padding: var(--spacing-unit) 0;
+  color: var(--meta-color);
+  font-size: .875rem;
+}
+
+.site-footer .wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: calc(var(--spacing-unit) * .5);
+}
+
+/* Home / post list */
+.page-heading {
+  font-size: 2rem;
+}
+
+.post-list-heading {
+  font-size: 1.75rem;
+}
+
+.post-list {
+  margin-left: 0;
+  list-style: none;
+}
+
+.post-list > li {
+  margin-bottom: var(--spacing-unit);
+}
+
+.post-list h3 {
+  margin-bottom: calc(var(--spacing-unit) * .25);
+}
+
+.post-meta {
+  font-size: .875rem;
+  color: var(--meta-color);
+}
+
+.post-link {
+  display: block;
+  font-size: 1.5rem;
+}
+
+/* Posts */
+.post-header {
+  margin-bottom: var(--spacing-unit);
+}
+
+.post-title {
+  font-size: 2.625rem;
+  letter-spacing: -1px;
+  line-height: 1.15;
+}
+
+@media (max-width: 600px) {
+  .post-title {
+    font-size: 2.25rem;
+  }
+}
+
+.post-content {
+  margin-bottom: var(--spacing-unit);
+}
+
+.post-content h2 { font-size: 1.75rem; }
+.post-content h3 { font-size: 1.375rem; }
+.post-content h4 { font-size: 1.125rem; }
+
+/* 404 */
+.error-page {
+  margin: 10px auto;
+  max-width: 600px;
+  text-align: center;
+}
+
+.error-page h1 {
+  margin: 30px 0;
+  font-size: 4.5rem;
+  line-height: 1;
+  letter-spacing: -1px;
+}

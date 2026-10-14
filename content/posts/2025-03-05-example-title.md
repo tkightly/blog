@@ -1,5 +1,6 @@
 ---
 title: "Created this blog"
+slug: "example-title"
 date: 2025-03-05
 ---
 

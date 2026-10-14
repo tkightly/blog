@@ -1,5 +1,6 @@
 ---
 title: "When your monitor \"just stops working\": a DisplayPort debugging story"
+slug: "displayport-debugging-story"
 date: 2026-09-01
 ---
 
