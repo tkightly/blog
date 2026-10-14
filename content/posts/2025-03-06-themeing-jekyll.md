@@ -1,5 +1,6 @@
 ---
 title: "Themeing Jekyll"
+slug: "themeing-jekyll"
 date: 2025-03-06
 ---
 

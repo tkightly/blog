@@ -1,9 +1,10 @@
 ---
 title: "When your monitor \"just stops working\": a DisplayPort debugging story"
+slug: "displayport-debugging-story"
 date: 2026-09-01
 ---
 
-TL;DR: My Samsung monitor stopped being detected by my Mac overnight, despite nothing changing on my end. Two days of troubleshooting later, the fix turned out to be a monitor firmware update, not a cable, a dock, or my Mac. Here's the trail, including the wrong turns.
+**TL;DR:** My Samsung monitor stopped being detected by my Mac overnight, despite nothing changing on my end. Two days of troubleshooting later, the fix turned out to be a monitor firmware update, not a cable, a dock, or my Mac. Here's the trail, including the wrong turns.
 
 ## The symptom
 

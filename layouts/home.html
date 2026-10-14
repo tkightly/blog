@@ -1,0 +1,18 @@
+{{ define "main" }}
+<div class="home">
+  <div class="hero">
+    <div class="palette-dots" aria-hidden="true">
+      {{- range slice "rosewater" "flamingo" "pink" "mauve" "red" "maroon" "peach" "yellow" "green" "teal" "sky" "sapphire" "blue" "lavender" }}<span style="background:var(--{{ . }})"></span>{{ end }}
+    </div>
+    <p class="prompt"><span class="prompt-path">~</span> <span class="prompt-sigil">$</span> cat welcome.md</p>
+    {{- with .Title }}
+    {{- $words := split . " " }}
+    {{- $last := index $words (sub (len $words) 1) }}
+    {{- $head := delimit (first (sub (len $words) 1) $words) " " }}
+    <h1 class="page-heading">{{ with $head }}{{ . }} {{ end }}<span class="gradient">{{ $last }}</span></h1>
+    {{- end }}
+    <div class="hero-content">{{ .Content }}</div>
+  </div>
+  {{ partial "post-list.html" (where site.RegularPages "Section" "posts") }}
+</div>
+{{ end }}

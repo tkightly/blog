@@ -1,0 +1,10 @@
+{{ define "main" }}
+<div class="home">
+  <div class="hero">
+    <p class="prompt"><span class="prompt-path">~</span> <span class="prompt-sigil">$</span> ls {{ .Section | default "." }}/</p>
+    <h1 class="page-heading">{{ .Title }}</h1>
+    <div class="hero-content">{{ .Content }}</div>
+  </div>
+  {{ partial "post-list.html" .Pages }}
+</div>
+{{ end }}
