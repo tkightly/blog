@@ -1,13 +1,15 @@
 {{ define "main" }}
 <article class="post">
   <header class="post-header">
-    <h1 class="post-title">{{ .Title }}</h1>
     <p class="post-meta">
-      <time datetime="{{ .Date | time.Format "2006-01-02" }}">{{ .Date | time.Format ":date_medium" }}</time>
+      <span class="dot" style="background:var(--mauve)"></span>
+      <time datetime="{{ .Date | time.Format "2006-01-02" }}">{{ .Date | time.Format "2 Jan 2006" }}</time>
     </p>
+    <h1 class="post-title">{{ .Title }}</h1>
   </header>
   <div class="post-content">
     {{ .Content }}
   </div>
+  <p><a class="read-more" href="{{ site.Home.RelPermalink }}"><span aria-hidden="true">←</span> All posts</a></p>
 </article>
 {{ end }}

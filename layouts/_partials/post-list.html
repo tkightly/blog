@@ -1,15 +1,27 @@
 {{- with . }}
-<h2 class="post-list-heading">Posts</h2>
-<ul class="post-list">
-  {{- range . }}
-  <li>
-    <span class="post-meta">{{ .Date | time.Format ":date_medium" }}</span>
-    <h3><a class="post-link" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-    {{- if site.Params.showExcerpts }}
-    {{- /* Match Jekyll's default excerpt: the first paragraph */}}
-    {{ index (findRE `(?s)<p>.*?</p>` .Content 1) 0 | safeHTML }}
+<section class="posts">
+  <div class="section-head">
+    <h2>Posts</h2>
+    <span class="entry-count">{{ len . }} {{ if eq (len .) 1 }}entry{{ else }}entries{{ end }}</span>
+  </div>
+  <ul class="post-list">
+    {{- range $i, $p := . }}
+    {{- $dots := slice "peach" "teal" "mauve" "blue" "pink" "yellow" }}
+    <li class="post-card">
+      <p class="post-meta">
+        {{- if eq $i 0 }}<span class="badge">Latest</span>{{ else }}<span class="dot" style="background:var(--{{ index $dots (mod (sub $i 1) (len $dots)) }})"></span>{{ end }}
+        <time datetime="{{ $p.Date | time.Format "2006-01-02" }}">{{ $p.Date | time.Format "2 Jan 2006" }}</time>
+      </p>
+      <h3><a class="post-link" href="{{ $p.RelPermalink }}">{{ $p.Title }}</a></h3>
+      {{- if site.Params.showExcerpts }}
+      <div class="excerpt">
+        {{- /* Match Jekyll's default excerpt: the first paragraph */}}
+        {{ index (findRE `(?s)<p>.*?</p>` $p.Content 1) 0 | safeHTML }}
+      </div>
+      {{- end }}
+      <a class="read-more" href="{{ $p.RelPermalink }}">Read post <span aria-hidden="true">→</span></a>
+    </li>
     {{- end }}
-  </li>
-  {{- end }}
-</ul>
+  </ul>
+</section>
 {{- end }}

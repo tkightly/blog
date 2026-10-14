@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
   <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
   {{- with .Description | default .Summary | plainify }}
   <meta name="description" content="{{ . | truncate 160 }}">
@@ -11,14 +12,20 @@
   {{- with site.Home.OutputFormats.Get "rss" }}
   <link rel="alternate" type="application/rss+xml" href="{{ .Permalink }}" title="{{ site.Title }}">
   {{- end }}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Figtree:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:wght@400;500&display=swap">
   {{- with resources.Get "css/main.css" | minify | fingerprint }}
   <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">
   {{- end }}
 </head>
 <body>
   <header class="site-header">
-    <div class="wrapper">
-      <a class="site-title" href="{{ site.Home.RelPermalink }}">{{ site.Title }}</a>
+    <div class="wrapper header-inner">
+      <a class="site-title" href="{{ site.Home.RelPermalink }}">Tim Kightly <span class="site-title-path">/blog</span></a>
+      <nav class="site-nav">
+        {{- with site.GetPage "/posts" }}<a href="{{ .RelPermalink }}">Posts</a>{{ end }}
+      </nav>
     </div>
   </header>
   <main class="page-content">
@@ -28,10 +35,11 @@
   </main>
   <footer class="site-footer">
     <div class="wrapper">
-      <span>{{ site.Title }}</span>
-      {{- with site.Home.OutputFormats.Get "rss" }}
-      <a href="{{ .RelPermalink }}">Subscribe via RSS</a>
-      {{- end }}
+      <span>© {{ now.Year }} Tim Kightly</span>
+      <span>
+        {{- with site.Home.OutputFormats.Get "rss" }}<a href="{{ .RelPermalink }}">RSS</a> · {{ end -}}
+        Built with Hugo · Catppuccin Frappé
+      </span>
     </div>
   </footer>
 </body>
