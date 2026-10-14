@@ -3,6 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  {{- /* The site has its own light and dark themes: tell the browser, and stop Dark Reader re-theming it */}}
+  <meta name="color-scheme" content="light dark">
+  <meta name="darkreader-lock">
   <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
   {{- with .Description | default .Summary | plainify }}
   <meta name="description" content="{{ . | truncate 160 }}">
