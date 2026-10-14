@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="dark">
   <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
   {{- with .Description | default .Summary | plainify }}
   <meta name="description" content="{{ . | truncate 160 }}">
@@ -12,6 +11,23 @@
   {{- with site.Home.OutputFormats.Get "rss" }}
   <link rel="alternate" type="application/rss+xml" href="{{ .Permalink }}" title="{{ site.Title }}">
   {{- end }}
+  <script>
+    /* Apply the saved Catppuccin flavour before first paint ("auto" follows the OS: Latte / Frappé). */
+    (function () {
+      var saved = "auto", root = document.documentElement;
+      try { saved = localStorage.getItem("catppuccin-theme") || "auto"; } catch (e) {}
+      if (["latte", "frappe", "macchiato", "mocha"].indexOf(saved) < 0) saved = "auto";
+      var mq = window.matchMedia("(prefers-color-scheme: light)");
+      function apply() { root.dataset.theme = saved === "auto" ? (mq.matches ? "latte" : "frappe") : saved; }
+      apply();
+      mq.addEventListener("change", apply);
+      window.__setTheme = function (v) {
+        saved = v; apply();
+        try { localStorage.setItem("catppuccin-theme", v); } catch (e) {}
+      };
+      window.__theme = saved;
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Figtree:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:wght@400;500&display=swap">
@@ -23,9 +39,21 @@
   <header class="site-header">
     <div class="wrapper header-inner">
       <a class="site-title" href="{{ site.Home.RelPermalink }}">Tim Kightly <span class="site-title-path">/blog</span></a>
-      <nav class="site-nav">
-        {{- with site.GetPage "/posts" }}<a href="{{ .RelPermalink }}">Posts</a>{{ end }}
-      </nav>
+      <div class="header-controls">
+        <nav class="site-nav">
+          {{- with site.GetPage "/posts" }}<a href="{{ .RelPermalink }}">Posts</a>{{ end }}
+        </nav>
+        <label class="theme-picker" hidden>
+          <span>theme</span>
+          <select id="theme-select" aria-label="Catppuccin theme">
+            <option value="auto">Auto</option>
+            <option value="latte">Latte</option>
+            <option value="frappe">Frappé</option>
+            <option value="macchiato">Macchiato</option>
+            <option value="mocha">Mocha</option>
+          </select>
+        </label>
+      </div>
     </div>
   </header>
   <main class="page-content">
@@ -42,5 +70,14 @@
       </span>
     </div>
   </footer>
+  <script>
+    (function () {
+      var sel = document.getElementById("theme-select");
+      if (!sel || !window.__setTheme) return;
+      sel.value = window.__theme;
+      sel.addEventListener("change", function () { window.__setTheme(sel.value); });
+      sel.closest("label").hidden = false;
+    })();
+  </script>
 </body>
 </html>
